@@ -1,5 +1,6 @@
 class BookmarksController < ApplicationController
   before_action :set_bookmark, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!, except: [:index, :show]
 
   respond_to :html
 
@@ -13,7 +14,7 @@ class BookmarksController < ApplicationController
   end
 
   def new
-    @bookmark = Bookmark.new
+    @bookmark = current_user.bookmarks.build
     respond_with(@bookmark)
   end
 
@@ -21,7 +22,7 @@ class BookmarksController < ApplicationController
   end
 
   def create
-    @bookmark = Bookmark.new(bookmark_params)
+    @bookmark = current_user.bookmarks.build(bookmark_params)
     @bookmark.save
     respond_with(@bookmark)
   end
