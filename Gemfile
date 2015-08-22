@@ -13,3 +13,4 @@ gem 'devise', '~> 3.5.2'
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
 #gem 'rmagick', '~> 2.12.2'
 gem "paperclip", "~> 4.3"
+gem 'acts_as_votable', '~> 0.10.0'

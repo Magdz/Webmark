@@ -17,5 +17,17 @@
   <%= @bookmark.description %>
 </p>
 
+<p>
+	<div class="btn-group">
+      <td><%= link_to like_bookmark_path(@bookmark), method: :put, :class => 'btn btn-small' do %>
+        Upvote (<%= @bookmark.get_upvotes.size %>)
+      <% end %></td>
+      <td><%= link_to dislike_bookmark_path(@bookmark), method: :put, :class => 'btn btn-small' do %>
+        <i class="icon-search"></i>
+        Downvote (<%= @bookmark.get_downvotes.size %>)
+      <% end %></td>
+    </div>
+</p>
+
 <%= link_to 'Edit', edit_bookmark_path(@bookmark) %> |
 <%= link_to 'Back', bookmarks_path %>

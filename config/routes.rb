@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :bookmarks
+  resources :bookmarks do 
+    member do
+      put "like", to: "bookmarks#upvote"
+      put "dislike", to: "bookmarks#downvote"
+    end
+  end
 
   root to: "bookmarks#index"
 
