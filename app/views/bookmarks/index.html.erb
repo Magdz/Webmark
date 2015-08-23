@@ -17,7 +17,6 @@
         <td><%= bookmark.title %></td>
         <td><%= bookmark.url %></td>
         <td><%= bookmark.description %></td>
-        <td><%= Category.find(bookmark.category_id).title%></td>
         <td><%= image_tag bookmark.image.url(:thumb) %></td>
         <td><%= link_to 'Show', bookmark %></td>
         <% if bookmark.user == current_user %>
