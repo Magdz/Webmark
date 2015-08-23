@@ -18,11 +18,13 @@
 </p>
 
 <p>
+
   <strong>Category:</strong>
   <%= Category.find(@bookmark.category_id).title%>
 </p>
 
 <p>
+
 	<div class="btn-group">
       <td><%= link_to like_bookmark_path(@bookmark), method: :put, :class => 'btn btn-small' do %>
         Upvote (<%= @bookmark.get_upvotes.size %>)
@@ -36,3 +38,4 @@
 
 <%= link_to 'Edit', edit_bookmark_path(@bookmark) %> |
 <%= link_to 'Back', :back %>
+<%= link_to 'Back', bookmarks_path %>

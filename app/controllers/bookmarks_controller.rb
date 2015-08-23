@@ -16,6 +16,7 @@ class BookmarksController < ApplicationController
   def new
     @bookmark = current_user.bookmarks.build
     #respond_with(@bookmark)
+    respond_with(@bookmark)
   end
 
   def edit
@@ -25,6 +26,8 @@ class BookmarksController < ApplicationController
     
     @bookmark = current_user.bookmarks.build(bookmark_params);
     #@bookmark = current_user.bookmarks.build(bookmark_params)
+
+    @bookmark = current_user.bookmarks.build(bookmark_params)
     @bookmark.save
     respond_with(@bookmark)
   end
