@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @category.title %>
+</p>
+
+<tbody>
+	<% @category.bookmarks.each do |bookmark| %>
+	<tr><li>
+	<td>Link:</td>
+	<td><%= bookmark.title %></td>
+	<td><%= link_to 'Show', bookmark %></td>
+	</tr>
+	</li>
+	<% end %>
+</tbody>
+<br>
+<%= link_to 'Edit', edit_category_path(@category) %> |
+<%= link_to 'Back', categories_path %>
