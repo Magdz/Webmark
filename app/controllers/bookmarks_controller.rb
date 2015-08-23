@@ -33,7 +33,7 @@ class BookmarksController < ApplicationController
   end
 
   def destroy
-    if current_user.params[:id] == 1 || current_user.params[:id] == @bookmark.user_id
+    if current_user.id == 1 || current_user.id == @bookmark.user_id
        @bookmark.destroy
        respond_with(@bookmark)
     end
@@ -57,6 +57,6 @@ class BookmarksController < ApplicationController
     end
 
     def bookmark_params
-      params.require(:bookmark).permit(:title, :url, :description, :category_id , :image)
+      params.require(:bookmark).permit(:title, :url, :description, :category_id , :user_id, :image)
     end
 end
