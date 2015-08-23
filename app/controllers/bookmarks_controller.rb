@@ -33,8 +33,10 @@ class BookmarksController < ApplicationController
   end
 
   def destroy
-    @bookmark.destroy
-    respond_with(@bookmark)
+    if current_user.params[:id] == 1 || current_user.params[:id] == @bookmark.user_id
+       @bookmark.destroy
+       respond_with(@bookmark)
+    end
   end
 
   def upvote
