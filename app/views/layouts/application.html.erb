@@ -16,7 +16,7 @@
 			<li><%= link_to 'Bookmarks', bookmarks_path %></li>
 
 			<li><%= link_to 'Submit bookmark', new_bookmark_path %></li>
-			<li><%= link_to 'Account-sittings', edit_user_registration_path %></li>
+			<li><%= link_to 'Account/Settings', edit_user_registration_path %></li>
 			<li><%= link_to 'Profile', user_path(current_user.id) %></li>
 			<li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
 		</ul>
