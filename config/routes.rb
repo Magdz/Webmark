@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
   resources :remarks
 
-  resources :subcategories
-  resources :categories
+  resources :subcategories do
+    resources :bookmarks
+  end
+
+  resources :categories do
+    resources :subcategories
+  end
 
   devise_for :users
   resources :users, :only => [:show]
@@ -12,6 +17,7 @@ Rails.application.routes.draw do
       put "like", to: "bookmarks#upvote"
       put "dislike", to: "bookmarks#downvote"
     end
+    resources :remakrs
   end
 
   root to: "bookmarks#index"

@@ -5,5 +5,17 @@
   <%= @subcategory.title %>
 </p>
 
+<tbody>
+	<% @subcategory.bookmarks.each do |bookmark| %>
+	<tr><li>
+	<td>Link:</td>
+	<td><%= bookmark.title %></td>
+	<td><%= link_to 'Show', bookmark %></td>
+	</tr>
+	</li>
+	<% end %>
+</tbody>
+<br>
+
 <%= link_to 'Edit', edit_subcategory_path(@subcategory) %> |
 <%= link_to 'Back', subcategories_path %>

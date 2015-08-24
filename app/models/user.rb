@@ -5,4 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :bookmarks,  dependent: :destroy
+  has_many :remarks, dependent: :destroy
+  has_many :users
+  belongs_to :user
 end
