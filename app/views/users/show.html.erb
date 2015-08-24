@@ -1,9 +1,11 @@
-<h1>Listing bookmarks</h1>
+<p id="notice"><%= notice %></p>
 
+<p>
+  <strong>BookMarks List Belongs to <%= @user.username%></strong>
+</p>
 <table>
   <thead>
     <tr>
-      <th>Author</th>
       <th>Title</th>
       <th>Url</th>
       <th>Description</th>
@@ -11,22 +13,21 @@
       <th colspan="3"></th>
     </tr>
   </thead>
-
   <tbody>
-    <% @bookmarks.each do |bookmark| %>
-      <tr>
-        <td><%= link_to bookmark.user.username , user_path(bookmark.user_id)%></td>
-        <td><%= bookmark.title %></td>
+	<% Bookmark.all.each do |bookmark| %>
+  <% if User.find(params[:id]).id == bookmark.user_id %>
+	<tr>
+	    <td><%= bookmark.title %></td>
         <td><%= bookmark.url %></td>
         <td><%= bookmark.description %></td>
+        <td><%= Category.find(bookmark.category_id).title%></td>
         <td><%= image_tag bookmark.image.url(:thumb) %></td>
         <td><%= link_to 'Show', bookmark %></td>
         <% if bookmark.user == current_user %>
         <td><%= link_to 'Edit', edit_bookmark_path(bookmark) %></td>
         <%end%>
         <% if current_user!= nil%>
-        <td><% if  current_user.id == 1 || bookmark.user ==current_user  %><%= link_to 'Destroy', bookmark, method: :delete, data: { confirm: 'Are you sure?' } %> <%end%> </td>  
-        
+        <td><% if  current_user.id == 1 || bookmark.user ==current_user  %><%= link_to 'Destroy', bookmark, method: :delete, data: { confirm: 'Are you sure?' } %> <%end%> </td> 
         <%end%>     
     <div class="btn-group">
       <td><%= link_to like_bookmark_path(bookmark), method: :put, :class => 'btn btn-small' do %>
@@ -37,10 +38,11 @@
         Downvote (<%= bookmark.get_downvotes.size %>)
       <% end %></td>
     </div>
-
-
       </tr>
+      <%end%>
     <% end %>
   </tbody>
 </table>
 
+        
+        

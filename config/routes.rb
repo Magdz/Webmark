@@ -2,10 +2,11 @@ Rails.application.routes.draw do
   resources :remarks
 
   resources :subcategories
-
   resources :categories
 
   devise_for :users
+  resources :users, :only => [:show]
+
   resources :bookmarks do 
     member do
       put "like", to: "bookmarks#upvote"
