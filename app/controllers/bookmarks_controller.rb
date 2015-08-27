@@ -18,6 +18,13 @@ class BookmarksController < ApplicationController
     respond_with(@bookmark)
   end
 
+  def update_subcategories
+    @subcategories = Category.find(params[:category_id]).subcategories
+    respond_to do |format|
+      format.json  { render :json => @subcategories }
+    end
+  end
+
   def edit
   end
 
@@ -33,8 +40,10 @@ class BookmarksController < ApplicationController
   end
 
   def destroy
-    @bookmark.destroy
-    respond_with(@bookmark)
+    if current_user.id == 1 || current_user.id == @bookmark.user_id
+       @bookmark.destroy
+       respond_with(@bookmark)
+    end
   end
 
   def upvote
@@ -55,6 +64,6 @@ class BookmarksController < ApplicationController
     end
 
     def bookmark_params
-      params.require(:bookmark).permit(:title, :url, :description, :image)
+      params.require(:bookmark).permit(:title, :url, :description, :category_id , :user_id, :subcategory, :image)
     end
 end

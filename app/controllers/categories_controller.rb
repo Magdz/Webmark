@@ -32,8 +32,10 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    @category.destroy
-    respond_with(@category)
+    if current_user.params[:id] == 1
+        @category.destroy
+        respond_with(@category)
+    end
   end
 
   private
