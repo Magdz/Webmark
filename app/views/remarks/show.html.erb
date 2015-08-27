@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Bookmark:</strong>
+  <%= @remark.bookmark_id %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @remark.body %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @remark.user %>
+</p>
+
+<%= link_to 'Edit', edit_remark_path(@remark) %> |
+<%= link_to 'Back', :back %>

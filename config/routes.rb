@@ -1,12 +1,30 @@
 Rails.application.routes.draw do
-  resources :categories
+  resources :remarks
+
+  resources :subcategories do
+    resources :bookmarks
+  end
+
+  resources :categories do
+    resources :subcategories
+  end
 
   devise_for :users
+  resources :users, :only => [:show]
+  
+  resources :bookmarks  
+  get 'bookmarks/update_subcategories/:category_id' =>'bookmarks#update_subcategories' 
+  resources :bookmarks do
+    member do
+      post 'toggle'
+    end
+  end
   resources :bookmarks do 
     member do
       put "like", to: "bookmarks#upvote"
       put "dislike", to: "bookmarks#downvote"
     end
+    resources :remakrs
   end
 
   root to: "bookmarks#index"

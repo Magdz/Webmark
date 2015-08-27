@@ -6,15 +6,16 @@
 </p>
 
 <tbody>
-	<% @category.bookmarks.each do |bookmark| %>
+	<% @category.subcategories.each do |subcategory| %>
 	<tr><li>
 	<td>Link:</td>
-	<td><%= bookmark.title %></td>
-	<td><%= link_to 'Show', bookmark %></td>
+	<td><%= subcategory.title %></td>
+	<td><%= link_to 'Show', subcategory %></td>
 	</tr>
 	</li>
 	<% end %>
 </tbody>
 <br>
-<%= link_to 'Edit', edit_category_path(@category) %> |
+
+<%= link_to 'Edit', edit_category_path(@category) %>
 <%= link_to 'Back', categories_path %>
