@@ -42,6 +42,26 @@
 
 <p>
 
+<<<<<<< HEAD
+=======
+  <strong>Subategory:</strong>
+  <%= Subcategory.find(@bookmark.subcategory_id).title%>
+</p>
+
+<tbody>
+  <% @bookmark.remarks.each do |remark| %>
+  <tr><li>
+  <td>Remark:</td>
+  <td><%= remark.body %></td>
+  <td><%= link_to 'Show', remark %></td>
+  </tr>
+  </li>
+  <% end %>
+</tbody>
+
+<p>
+
+>>>>>>> update
 	<div class="btn-group">
       <td><%= link_to like_bookmark_path(@bookmark), method: :put, :class => 'btn btn-small' do %>
         Upvote (<%= @bookmark.get_upvotes.size %>)

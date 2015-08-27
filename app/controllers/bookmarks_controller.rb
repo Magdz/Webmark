@@ -18,6 +18,20 @@ class BookmarksController < ApplicationController
     respond_with(@bookmark)
   end
 
+  def find
+    @bookmarks = Subcategory.find(params[:subcategory_id]).bookmarks;
+    respond_to do |format|
+      format.json  { render :json => @bookmarks }
+    end
+  end
+
+  def update_subcategories
+    @subcategories = Category.find(params[:category_id]).subcategories
+    respond_to do |format|
+      format.json  { render :json => @subcategories }
+    end
+  end
+
   def edit
   end
 
@@ -57,6 +71,10 @@ class BookmarksController < ApplicationController
     end
 
     def bookmark_params
+<<<<<<< HEAD
       params.require(:bookmark).permit(:title, :url, :description, :category_id , :user_id, :image)
+=======
+      params.require(:bookmark).permit(:title, :url, :description, :category_id, :subcategory_id , :user_id, :image)
+>>>>>>> update
     end
 end

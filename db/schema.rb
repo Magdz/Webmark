@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20150824145804) do
+=======
+ActiveRecord::Schema.define(version: 20150824093413) do
+>>>>>>> update
 
   create_table "bookmarks", force: true do |t|
     t.string   "title"
@@ -36,11 +40,16 @@ ActiveRecord::Schema.define(version: 20150824145804) do
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
+<<<<<<< HEAD
     t.integer  "subcategory_id"
   end
 
   add_index "categories", ["subcategory_id"], name: "index_categories_on_subcategory_id"
 
+=======
+  end
+
+>>>>>>> update
   create_table "remarks", force: true do |t|
     t.integer  "bookmark_id"
     t.text     "body"
@@ -56,11 +65,17 @@ ActiveRecord::Schema.define(version: 20150824145804) do
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
+<<<<<<< HEAD
     t.integer  "bookmark_id"
     t.integer  "category_id"
   end
 
   add_index "subcategories", ["bookmark_id"], name: "index_subcategories_on_bookmark_id"
+=======
+    t.integer  "category_id"
+  end
+
+>>>>>>> update
   add_index "subcategories", ["category_id"], name: "index_subcategories_on_category_id"
 
   create_table "users", force: true do |t|
