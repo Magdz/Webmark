@@ -3,12 +3,6 @@
 <%= image_tag @bookmark.image.url(:medium) %>
 
 <p>
-  <small>Submitted
-  <%= time_ago_in_words(@bookmark.created_at) %>
-   by <%= @bookmark.user.username %> 
-</small></p>
-
-<p>
   <strong>Title:</strong>
   <%= @bookmark.title %>
 </p>
@@ -24,24 +18,11 @@
 </p>
 
 <p>
-
   <strong>Category:</strong>
-  <%= Category.find(@bookmark.category_id).title%>
+  <%= @bookmark.category.title %>
 </p>
 
-<tbody>
-  <% @bookmark.remarks.each do |remark| %>
-  <tr><li>
-  <td>Remark:</td>
-  <td><%= remark.body %></td>
-  <td><%= link_to 'Show', remark %></td>
-  </tr>
-  </li>
-  <% end %>
-</tbody>
-
 <p>
-
 	<div class="btn-group">
       <td><%= link_to like_bookmark_path(@bookmark), method: :put, :class => 'btn btn-small' do %>
         Upvote (<%= @bookmark.get_upvotes.size %>)
