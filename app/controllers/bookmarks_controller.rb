@@ -71,10 +71,6 @@ class BookmarksController < ApplicationController
     end
 
     def bookmark_params
-<<<<<<< HEAD
-      params.require(:bookmark).permit(:title, :url, :description, :category_id , :user_id, :image)
-=======
       params.require(:bookmark).permit(:title, :url, :description, :category_id, :subcategory_id , :user_id, :image)
->>>>>>> update
     end
 end

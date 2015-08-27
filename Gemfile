@@ -15,8 +15,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 #gem 'rmagick', '~> 2.12.2'
 gem "paperclip", "~> 4.3"
 gem 'acts_as_votable', '~> 0.10.0'
-<<<<<<< HEAD
 gem 'bootstrap-sass', '~> 3.2.0.2'
-=======
-gem 'bootstrap-sass', '~> 3.2.0.2'
->>>>>>> update
+
