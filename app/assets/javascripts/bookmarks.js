@@ -6,7 +6,6 @@ $(document).ready(function(){
         var row = "<option value=\"" + "" + "\">" + "" + "</option>";
         $(row).appendTo("select#bookmark_subcategory_id");
     }else {
-        alert(id_value_string);
         $.ajax({
             dataType: "json",
             url:"update_subcategories/"+id_value_string,        
@@ -16,7 +15,6 @@ $(document).ready(function(){
             success: function(data){                    
                 $("select#bookmark_subcategory_id option").remove();
                 var row = "<option value=\"" + "" + "\">" + "" + "</option>";
-                alert(data);
                 $(row).appendTo("select#bookmark_subcategory_id"); 
                 $.each(data, function(i, j){
                     row = "<option value=\"" + j.id + "\">" + j.title + "</option>";   

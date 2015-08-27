@@ -29,6 +29,12 @@
   <%= Category.find(@bookmark.category_id).title%>
 </p>
 
+<p>
+
+  <strong>Subategory:</strong>
+  <%= Subcategory.find(@bookmark.subcategory_id).title%>
+</p>
+
 <tbody>
   <% @bookmark.remarks.each do |remark| %>
   <tr><li>

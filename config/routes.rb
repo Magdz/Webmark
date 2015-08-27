@@ -13,12 +13,9 @@ Rails.application.routes.draw do
   resources :users, :only => [:show]
   
   resources :bookmarks  
-  get 'bookmarks/update_subcategories/:category_id' =>'bookmarks#update_subcategories' 
-  resources :bookmarks do
-    member do
-      post 'toggle'
-    end
-  end
+  get 'bookmarks/update_subcategories/:category_id' =>'bookmarks#update_subcategories'
+  get 'bookmarks/find/:subcategory_id' =>'bookmarks#find'
+  match 'bookmarks/find' => 'bookmarks#find', :via => :get
   resources :bookmarks do 
     member do
       put "like", to: "bookmarks#upvote"

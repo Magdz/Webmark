@@ -1,0 +1,16 @@
+<h1>Listing bookmarks</h1>
+
+
+<%= form_for(@bookmark, remote: true) do |f| %>
+
+<div class="field">
+    <%= f.label :Category %>
+    <%= collection_select(:bookmark, :category_id, Category.all, :id, :title , options ={:prompt => ""} ) %>
+  </div>
+
+  <div class="field" id = "subcategory" >
+    <%= f.label :Subcategory%>
+    <%= collection_select(:bookmark, :subcategory_id, Subcategory.all, :id, :title, options ={:prompt => ""}, {:class => "subcategory"})  %>
+  </div>
+  <%end%>
+<%= link_to 'New Bookmark', new_bookmark_path %>
