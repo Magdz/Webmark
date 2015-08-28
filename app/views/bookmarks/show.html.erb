@@ -29,17 +29,6 @@
   <%= Category.find(@bookmark.category_id).title%>
 </p>
 
-<tbody>
-  <% @bookmark.remarks.each do |remark| %>
-  <tr><li>
-  <td>Remark:</td>
-  <td><%= remark.body %></td>
-  <td><%= link_to 'Show', remark %></td>
-  </tr>
-  </li>
-  <% end %>
-</tbody>
-
 <p>
 
   <strong>Subategory:</strong>

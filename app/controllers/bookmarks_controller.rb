@@ -18,8 +18,15 @@ class BookmarksController < ApplicationController
     respond_with(@bookmark)
   end
 
-  def find
-    @bookmarks = Subcategory.find(params[:subcategory_id]).bookmarks;
+  def All
+    @bookmarks = Bookmark.all
+    respond_to do |format|
+      format.json  { render :json => @bookmarks }
+    end
+  end
+
+  def update_bookmarks
+    @bookmarks = Subcategory.find(params[:subcategory_id]).bookmarks
     respond_to do |format|
       format.json  { render :json => @bookmarks }
     end

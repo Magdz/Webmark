@@ -1,0 +1,91 @@
+$(document).ready(function(){
+  $("select#bookmark_category_id").change(function(){
+    var id_value_string = $(this).val();
+    if (id_value_string == "") { 
+        $("select#bookmark_subcategory_id option").remove();
+        var row = "<option value=\"" + "" + "\">" + "" + "</option>";
+        $(row).appendTo("select#bookmark_subcategory_id");
+    }else {
+        $.ajax({
+            dataType: "json",
+            url:"update_subcategories/"+id_value_string,        
+            error: function(XMLHttpRequest, errorTextStatus, error){
+                alert("Failed to submit : "+ erorTextStatus+" ;"+error);
+            },
+            success: function(data){                    
+                $("select#bookmark_subcategory_id option").remove();
+                var row = "<option value=\"" + "" + "\">" + "" + "</option>";
+                $(row).appendTo("select#bookmark_subcategory_id"); 
+                $.each(data, function(i, j){
+                    row = "<option value=\"" + j.id + "\">" + j.title + "</option>";   
+                    $(row).appendTo("select#bookmark_subcategory_id");                     
+                });             
+            }
+        })
+    };
+  });
+$(".category").change(function(){
+    var id_value_string = $(this).val();
+    if (id_value_string == "" ){
+       $.ajax({
+         dataType: "json",
+            url:"/",        
+            error: function(XMLHttpRequest, errorTextStatus, error){
+                alert("Failed to submit : "+ erorTextStatus+" ;"+error);
+            },
+            success: function(data){
+                $("tbody#display").remove();
+                var tbody = document.createElement("tbody");
+                tbody.id = "display";
+                document.getElementById("myTable").appendChild(tbody);
+                $.each(data, function(i, j){
+                    row = "<p >" +j.title + "           " + j.url+  "           " + j.description+ "</p>";   
+                    $(row).appendTo("tbody#display");                     
+                });
+            }
+       })   
+    }
+});
+$("select#bookmark_subcategory_id").change(function(){
+    var id_value_string = $(this).val();
+    if (id_value_string == "" ){
+       $.ajax({
+         dataType: "json",
+            url:"/",        
+            error: function(XMLHttpRequest, errorTextStatus, error){
+                alert("Failed to submit : "+ erorTextStatus+" ;"+error);
+            },
+            success: function(data){
+                $("tbody#display").remove();
+                var tbody = document.createElement("tbody");
+                tbody.id = "display";
+                document.getElementById("myTable").appendChild(tbody);
+                $.each(data, function(i, j){
+                    row = "<p >" +j.title + "           " + j.url+  "           " + j.description+ "</p>";   
+                    $(row).appendTo("tbody#display");                     
+                });
+            }
+       })
+    }else{
+        $.ajax({
+            dataType: "json",
+            url:"update_bookmarks/"+id_value_string,        
+            error: function(XMLHttpRequest, errorTextStatus, error){
+                alert("Failed to submit : "+ erorTextStatus+" ;"+error);
+            },
+            success: function(data){
+                $("tbody#display").remove();
+                var tbody = document.createElement("tbody");
+                tbody.id = "display";
+                document.getElementById("myTable").appendChild(tbody);
+                $.each(data, function(i, j){
+                    row = "<p >" +j.title + "           " + j.url+  "           " + j.description+ "</p>";   
+                    $(row).appendTo("tbody#display");                     
+                });
+            }
+        });
+    }
+        
+  });
+});
+  

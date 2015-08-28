@@ -15,7 +15,6 @@
     <ul>
   	   <li><%= link_to "Category" , categories_path %> </li>
        <li><%= link_to "SubCategory" , subcategories_path %> </li>
-       <li><%= link_to "find Bookmarks" , bookmarks_find_path %></li>
        <li><%= link_to "Account Sittings" , edit_user_registration_path %></li>
        <li><%= link_to "Profile" , user_path(current_user.id)%></li>
        <li><%= link_to "Bookmarks" , bookmarks_path %></li>
@@ -28,6 +27,10 @@
 </ul>
 
 <%end%>
+
+
+
+
 
 <%= yield %>
 

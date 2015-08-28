@@ -11,10 +11,12 @@ Rails.application.routes.draw do
 
   devise_for :users
   resources :users, :only => [:show]
+  
   resources :bookmarks  
   get 'bookmarks/update_subcategories/:category_id' =>'bookmarks#update_subcategories'
-  get 'bookmarks/find/:subcategory_id' =>'bookmarks#find'
-  match 'bookmarks/find' => 'bookmarks#find', :via => :get
+  get 'update_subcategories/:category_id' =>'bookmarks#update_subcategories'
+  get 'update_bookmarks/:subcategory_id' =>'bookmarks#update_bookmarks'
+  get '/' => 'bookmarks#All'
   resources :bookmarks do 
     member do
       put "like", to: "bookmarks#upvote"
