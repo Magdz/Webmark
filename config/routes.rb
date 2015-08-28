@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   get 'bookmarks/update_subcategories/:category_id' =>'bookmarks#update_subcategories'
   get 'update_subcategories/:category_id' =>'bookmarks#update_subcategories'
   get 'update_bookmarks/:subcategory_id' =>'bookmarks#update_bookmarks'
-  get 'bookmarks/' => 'bookmarks#All'
+  get 'All/' => 'bookmarks#All'
   resources :bookmarks do 
     member do
       put "like", to: "bookmarks#upvote"

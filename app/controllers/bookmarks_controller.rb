@@ -20,15 +20,32 @@ class BookmarksController < ApplicationController
 
   def All
     @bookmarks = Bookmark.all
+    @arrays =[]
+    @bookmarks.each do |bookmark|
+      @arrays << User.find(bookmark.user_id).username
+      @arrays << bookmark.title
+      @arrays << bookmark.url
+      @arrays << bookmark.description
+      @arrays << Subcategory.find(bookmark.subcategory_id).title
+      @arrays << Category.find(bookmark.category_id).title
+    end
     respond_to do |format|
-      format.json  { render :json => @bookmarks }
+      format.json  { render :json => @arrays }
     end
   end
 
   def update_bookmarks
+
     @bookmarks = Subcategory.find(params[:subcategory_id]).bookmarks
+    @arrays =[]
+    @bookmarks.each do |bookmark|
+      @arrays << User.find(bookmark.user_id).username
+      @arrays << bookmark.title
+      @arrays << bookmark.url
+      @arrays << bookmark.description
+    end
     respond_to do |format|
-      format.json  { render :json => @bookmarks }
+      format.json  { render :json => @arrays }
     end
   end
 
