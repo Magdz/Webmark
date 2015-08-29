@@ -7,32 +7,38 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
- <p class="notice"><%= notice %></p>
- <p class="alert"><%= alert %></p>
+ 
 
-
-<% if user_signed_in? %>
-    <ul>
-  	   <li><%= link_to "Category" , categories_path %> </li>
+<header class ="navbar navbar-default" role = "navigation">
+  <div class ="navbar-inner">
+    <div class = "container">
+      <div id = "logo" class = "navbar-brand"><%= link_to 'redit' , root_path %></div>
+      <nav class = "collapse navbar-collapse navbar-ex1-collapse">
+        <% if user_signed_in? %>
+    <ul class="nav navbar-nav navbar-right ">
+       <li><%= link_to "Category" , categories_path %> </li>
        <li><%= link_to "SubCategory" , subcategories_path %> </li>
-       <li><%= link_to "Account/Settings" , edit_user_registration_path %></li>
+       <li><%= link_to "Account Sittings" , edit_user_registration_path %></li>
        <li><%= link_to "Profile" , user_path(current_user.id)%></li>
        <li><%= link_to "Bookmarks" , bookmarks_path %></li>
        <li><%= link_to "Sign out" , destroy_user_session_path , :method => :delete %></li>
     </ul>
   <%else%>
-<ul>
-	<li><%= link_to "Sign in" , new_user_session_path %></li>
-    <li><%= link_to " Sign up" , new_user_registration_path %></li>
-</ul>
+    <ul class ="nav navbar-nav navbar-right ">
+      <li><%= link_to "Sign in" , new_user_session_path %></li>
+      <li><%= link_to " Sign up" , new_user_registration_path %></li>
+   </ul>
 
-<%end%>
+  <%end%>
+      </nav>
+    </div>
+  </div>
+</header>
 
 
 
-
-
+<div id = "container" class = "col-md-9 center-block">
 <%= yield %>
-
+</div>
 </body>
 </html>

@@ -1,6 +1,6 @@
 class BookmarksController < ApplicationController
   before_action :set_bookmark, only: [:show, :edit, :update, :destroy]
-  before_filter :authenticate_user!, except: [:index, :show]
+  before_filter :authenticate_user!, except: [ :show]
 
   respond_to :html
 
@@ -43,6 +43,8 @@ class BookmarksController < ApplicationController
       @arrays << bookmark.title
       @arrays << bookmark.url
       @arrays << bookmark.description
+      @arrays << Subcategory.find(bookmark.subcategory_id).title
+      @arrays << Category.find(bookmark.category_id).title
     end
     respond_to do |format|
       format.json  { render :json => @arrays }

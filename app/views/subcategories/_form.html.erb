@@ -10,21 +10,15 @@
       </ul>
     </div>
   <% end %>
-
-  <style type="text/css">
-    .hide1{
-      display: none;
-     }
-  </style>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :Category %><br>
-    <%= f.collection_select :category_id, Category.all , :id, :title, {:include_blank => ''} ,{:class => 'Category'} %>
+    <%= f.collection_select :category_id, Category.all , :id, :title, {:include_blank => ''} ,{:class => 'Category form-control'}  %>
   </div>
-  <div class="field hide1">
+  <div class="form-group hide1">
     <%= f.label :title %><br>
-    <%= f.text_field :title %>
+    <%= f.text_field :title , class: "form-control"%>
   </div>
-  <div class="actions hide1">
-    <%= f.submit %>
+  <div class="form-froup hide1">
+    <%= f.submit "Create Subcategory", class: "btn btn-lg btn-primary" %>
   </div>
 <% end %>
