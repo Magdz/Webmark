@@ -1,4 +1,7 @@
 class Remark < ActiveRecord::Base
-  belongs_to :user
-  belongs_to :bookmark
+
+	validates :bookmark_id, :body, :user_id, presence: true
+
+	belongs_to :user
+  	belongs_to :bookmark
 end
