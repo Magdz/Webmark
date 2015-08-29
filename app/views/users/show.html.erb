@@ -14,10 +14,10 @@
     </tr>
   </thead>
   <tbody>
-	<% Bookmark.all.each do |bookmark| %>
+  <% Bookmark.all.each do |bookmark| %>
   <% if User.find(params[:id]).id == bookmark.user_id %>
-	<tr>
-	    <td><%= bookmark.title %></td>
+  <tr>
+      <td><%= bookmark.title %></td>
         <td><%= bookmark.url %></td>
         <td><%= bookmark.description %></td>
         <td><%= Category.find(params[:id]).title%></td>

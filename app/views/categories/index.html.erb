@@ -8,7 +8,7 @@
     </tr>
   </thead>
 
-  <tbody class = ".table-striped">
+  <tbody class = "table-striped">
     <% @categories.each do |category| %>
       <tr>
         <td><%= category.title %></td>
@@ -24,4 +24,4 @@
 
 <br>
 
-<%= link_to 'New Category', new_category_path %>
+<%= link_to 'New Category', new_category_path ,:class => "btn btn-primary" %>

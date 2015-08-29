@@ -5,59 +5,61 @@
 <p>
   <small>Submitted
   <%= time_ago_in_words(@bookmark.created_at) %>
-   by <%= @bookmark.user.username %> 
+   by <strong><%= @bookmark.user.username %> </strong>
 </small></p>
-
-<p>
-  <strong>Title:</strong>
+<table class = "table table-striped table-bordered table-condensed ">
+  <tr>
+    <td>
+      <strong>Title:</strong>
+      <%= @bookmark.title %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+       <strong>Title:</strong>
   <%= @bookmark.title %>
-</p>
-
-<p>
+</td>
+  </tr>
+  <tr>
+    <td>
   <strong>Url:</strong>
   <%= @bookmark.url %>
-</p>
-
-<p>
+</td>
+  </tr>
+  <tr>
+    <td>
   <strong>Description:</strong>
   <%= @bookmark.description %>
-</p>
-
-<p>
-
+</td>
+  </tr>
+  <tr>
+    <td>
   <strong>Category:</strong>
   <%= Category.find(@bookmark.category_id).title%>
-</p>
-
-<p>
+</td>
+  </tr>
+  <tr>
+    <td>
 
   <strong>Subategory:</strong>
   <%= Subcategory.find(@bookmark.subcategory_id).title%>
-</p>
-
-<tbody>
-  <% @bookmark.remarks.each do |remark| %>
-  <tr><li>
-  <td>Remark:</td>
-  <td><%= remark.body %></td>
-  <td><%= link_to 'Show', remark %></td>
+</td>
   </tr>
-  </li>
-  <% end %>
-</tbody>
+  <tr>
 
-<p>
-
-	<div class="btn-group">
-      <td><%= link_to like_bookmark_path(@bookmark), method: :put, :class => 'btn btn-small' do %>
+  <div class="btn-group">
+      <td><%= link_to like_bookmark_path(@bookmark), method: :put, :class => 'btn btn-success' do %>
         Upvote (<%= @bookmark.get_upvotes.size %>)
-      <% end %></td>
-      <td><%= link_to dislike_bookmark_path(@bookmark), method: :put, :class => 'btn btn-small' do %>
+      <% end %>
+      <%= link_to dislike_bookmark_path(@bookmark), method: :put, :class => 'btn btn-success' do %>
         <i class="icon-search"></i>
         Downvote (<%= @bookmark.get_downvotes.size %>)
       <% end %></td>
     </div>
-</p>
+  </tr>
+</table>
 
-<%= link_to 'Edit', edit_bookmark_path(@bookmark) %> |
-<%= link_to 'Back', :back %>
+
+
+<%= link_to 'Edit', edit_bookmark_path(@bookmark) ,  :class => "btn btn-warning" %> |
+<%= link_to 'Back', :back,:class => "btn btn-default" %>

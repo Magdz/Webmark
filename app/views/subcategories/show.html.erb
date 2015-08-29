@@ -1,21 +1,19 @@
 <p id="notice"><%= notice %></p>
-
-<p>
+<table class = "table table-striped table-bordered table-condensed ">
+<thead>
   <strong>Title:</strong>
   <%= @subcategory.title %>
-</p>
-
-<tbody>
+</thead>
+<tbody >
 	<% @subcategory.bookmarks.each do |bookmark| %>
-	<tr><li>
-	<td>Link:</td>
+	<tr>
 	<td><%= bookmark.title %></td>
-	<td><%= link_to 'Show', bookmark %></td>
+	<td><%= link_to 'Show', bookmark ,:class => "btn btn-info"%></td>
 	</tr>
-	</li>
 	<% end %>
 </tbody>
+</table>
 <br>
 
-<%= link_to 'Edit', edit_subcategory_path(@subcategory) %> |
-<%= link_to 'Back', subcategories_path %>
+<%= link_to 'Edit', edit_subcategory_path(@subcategory) , :class => "btn btn-warning" %> |
+<%= link_to 'Back', subcategories_path  , :class => "btn btn-default"%>
