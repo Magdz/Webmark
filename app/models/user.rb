@@ -6,6 +6,5 @@ class User < ActiveRecord::Base
 
   has_many :bookmarks,  dependent: :destroy
   has_many :remarks, dependent: :destroy
-  has_many :users
-  belongs_to :user
+  has_and_belongs_to_many :followers
 end

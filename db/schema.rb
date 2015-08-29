@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150824093413) do
+ActiveRecord::Schema.define(version: 20150829112913) do
 
   create_table "bookmarks", force: true do |t|
     t.string   "title"
@@ -37,6 +37,26 @@ ActiveRecord::Schema.define(version: 20150824093413) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "followers", force: true do |t|
+    t.integer  "follower_id"
+    t.integer  "followed_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "followers", ["followed_id"], name: "index_followers_on_followed_id"
+  add_index "followers", ["follower_id"], name: "index_followers_on_follower_id"
+
+  create_table "followings", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "followed_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "followings", ["followed_id"], name: "index_followings_on_followed_id"
+  add_index "followings", ["user_id"], name: "index_followings_on_user_id"
 
   create_table "remarks", force: true do |t|
     t.integer  "bookmark_id"
