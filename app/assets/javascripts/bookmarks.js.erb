@@ -46,7 +46,7 @@ $(".category").change(function(){
        })   
     }
 });
-$("select#bookmark_subcategory_id").change(function(){
+$(".subcategory").change(function(){
     var id_value_string = $(this).val();
     if (id_value_string == "" ){
        $.ajax({
