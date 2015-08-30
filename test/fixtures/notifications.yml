@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  sender_id: 1
+  category_id: 1
+  subcategory_id: 1
+  bookmark_id: 1
+
+two:
+  sender_id: 1
+  category_id: 1
+  subcategory_id: 1
+  bookmark_id: 1
