@@ -2,6 +2,24 @@
 
 <p>
   <strong>BookMarks List Belongs to <%= @user.username%></strong>
+  <div>
+    <% if current_user.id == User.find(params[:id]).id %>
+      Followers (<%= @followers_count %>)     Following (<%= @followeing_count %>)
+    <% else %>
+      <% @found = false %>
+      <% Follower.all.each do |follower| %>
+        <% if (follower.followed_id == User.find(params[:id]).id) && (follower.follower_id == current_user.id)%>
+          <% @found = true %>
+          <% @s = follower %>
+        <% end %>
+      <% end %>
+      <% if @found == true %>
+        <%= link_to 'Unfollow' , unfollow_follower_path(:follow => @s.id), method: :delete, :class => 'btn btn-warning' %>
+      <% else %>
+        <%= link_to 'Follow' , follow_follower_path, method: :put, :class => 'btn btn-success' %>
+      <% end %>
+    <% end %>
+  </div>
 </p>
 <table class = "table table-striped table-bordered table-condensed">
   <thead>

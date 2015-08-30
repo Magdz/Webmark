@@ -27,6 +27,13 @@ Rails.application.routes.draw do
     resources :remakrs
   end
 
+  resources :followers do
+    member do
+      put "follow", to: "followers#follow"
+      delete "unfollow", to: "followers#unfollow"
+    end
+  end
+
   root to: "bookmarks#index"
 
   # The priority is based upon order of creation: first created -> highest priority.

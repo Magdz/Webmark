@@ -1,39 +1,24 @@
 class FollowersController < ApplicationController
-  before_action :set_follower, only: [:show, :edit, :update, :destroy]
+  before_action :set_follower, only: [:show]
 
   respond_to :html
-
-  def index
-    @followers = Follower.all
-    respond_with(@followers)
-  end
 
   def show
     respond_with(@follower)
   end
 
-  def new
+  def follow
     @follower = Follower.new
-    respond_with(@follower)
-  end
-
-  def edit
-  end
-
-  def create
-    @follower = Follower.new(follower_params)
+    @follower.follower_id = current_user.id
+    @follower.followed_id = params[:id]
     @follower.save
-    respond_with(@follower)
+    redirect_to :back
   end
 
-  def update
-    @follower.update(follower_params)
-    respond_with(@follower)
-  end
-
-  def destroy
+  def unfollow
+    @follower = Follower.find(params[:follow])
     @follower.destroy
-    respond_with(@follower)
+    redirect_to :back
   end
 
   private
