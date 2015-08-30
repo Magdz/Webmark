@@ -1,0 +1,21 @@
+<h1>Listing followings</h1>
+
+<table class = "table table-striped table-bordered table-condensed ">
+	<thead>
+		<tr>
+			<th>Username</th>
+		</tr>
+	</thead>
+	<tbody class = "table-striped">
+		<% Follower.all.each do |follower|
+			if follower.follower_id == current_user.id %>
+			<tr>
+				<td><%= link_to User.find(follower.followed_id).username, user_path(follower.followed_id) %></td>
+				<td><%#= link_to 'Unfollow' , unfollow_follower_path(:follow => follower.id), method: :delete, :class => 'btn btn-warning' %></td>
+			</tr>
+			<% end 
+			end %>
+	</tbody>
+</table>
+
+<%= link_to 'Back', :back ,:class => "btn btn-primary" %>

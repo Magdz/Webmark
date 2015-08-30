@@ -2,9 +2,19 @@
 
 <p>
   <strong>BookMarks List Belongs to <%= @user.username%></strong>
-  <div>
+  <div class="btn-group">
     <% if current_user.id == User.find(params[:id]).id %>
-      Followers (<%= @followers_count %>)     Following (<%= @followeing_count %>)
+    <% @follower_count = 0
+     @following_count = 0
+    Follower.all.each do |follow|
+      if follow.followed_id == current_user.id
+        @follower_count = @follower_count + 1;
+      elsif follow.follower_id == current_user.id
+        @following_count = @following_count + 1;
+      end
+    end %>
+      <%= link_to "Followers (#{@follower_count})", followers_show_follower_path, method: :post, :class => 'btn btn-success' %>
+      <%= link_to "Following (#{@following_count})", following_show_follower_path, method: :post, :class => 'btn btn-success' %>
     <% else %>
       <% @found = false %>
       <% Follower.all.each do |follower| %>

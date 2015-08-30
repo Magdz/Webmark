@@ -31,6 +31,10 @@ Rails.application.routes.draw do
     member do
       put "follow", to: "followers#follow"
       delete "unfollow", to: "followers#unfollow"
+      get "followers_count", to: "followers#followers_count"
+      get "following_count", to: "followers#following_count"
+      post "followers_show", to: "followers#followers_show"
+      post "following_show", to: "followers#following_show"
     end
   end
 
