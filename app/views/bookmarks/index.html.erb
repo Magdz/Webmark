@@ -31,7 +31,7 @@
       <tr>
         <td><%= link_to bookmark.user.username , user_path(bookmark.user_id)%></td>
         <td><%= bookmark.title %></td>
-        <td><%= bookmark.url %></td>
+        <td><a href = <%= bookmark.url %> > <%= bookmark.url %> </a></td>
         <td><%= bookmark.description %></td>
         <td><%= Category.find(bookmark.category_id).title %></td>
         <td><%= Subcategory.find(bookmark.subcategory_id).title %></td>
