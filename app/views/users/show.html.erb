@@ -2,7 +2,7 @@
 
 <p>
   <strong>BookMarks List Belongs to <%= @user.username%></strong>
-  <div class="btn-group">
+  <div  id="follow">
     <% if current_user.id == User.find(params[:id]).id %>
     <% @follower_count = 0
      @following_count = 0
@@ -29,13 +29,13 @@
         <%= link_to 'Follow' , follow_follower_path, method: :put, :class => 'btn btn-success' %>
       <% end %>
     <% end %>
-  </div>
+  </div></p>
   <% if current_user.id == User.find(params[:id]).id %>
-  <div class="btn btn-success" id="notification">
- <%= link_to 'Notifications' , notification_path(current_user.id) %><!--span class="badge"> </span-->
-  </div>
+  <p id="split"><div id="notification">
+ <%= link_to 'Notifications' , notification_path(current_user.id), :class => 'btn btn-success' %><!--span class="badge"> </span-->
+  </div></p>
   <% end %>
-</p>
+  <p><div><%= image_tag @user.avatar.url(:thumb) %></div></p>
 <p>Email: <%= User.find(params[:id]).email  %></p>
 <table class = "table table-striped table-bordered table-condensed">
   <thead>
