@@ -23,7 +23,6 @@
       <th>Description</th>
       <th>Category</th>
       <th>Subategory</th>
-      <th> image</th>
     </tr>
   </thead>
 
@@ -36,7 +35,6 @@
         <td><%= bookmark.description %></td>
         <td><%= Category.find(bookmark.category_id).title %></td>
         <td><%= Subcategory.find(bookmark.subcategory_id).title %></td>
-        <td><%= image_tag bookmark.image.url(:thumb) %></td>
         <td><%= link_to 'Show', bookmark , :class => "btn btn-info"%></td>
         <div class="btn-group">
       <td><%= link_to like_bookmark_path(bookmark), method: :put, :class => 'btn btn-success' do %>

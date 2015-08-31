@@ -10,11 +10,7 @@
       </ul>
     </div>
   <% end %>  
-
-  <div class="form-group">
-    <%= f.label :image %><br>
-    <%= f.file_field :image , class: "form-control" %>
-  </div>
+  
   <div class="form-group">
     <%= f.label :Category %>
     <%= collection_select(:bookmark, :category_id, Category.all, :id, :title , options ={:prompt => ""} , {class: "form-control"} ) %>
