@@ -35,7 +35,7 @@
  <%= link_to 'Notifications' , notification_path(current_user.id), :class => 'btn btn-success' %><!--span class="badge"> </span-->
   </div></p>
   <% end %>
-  <p><div><%= image_tag @user.avatar.url(:thumb) %></div></p>
+  <p><div><%= image_tag @user.avatar.url(:medium) %></div></p>
 <p>Email: <%= User.find(params[:id]).email  %></p>
 <table class = "table table-striped table-bordered table-condensed">
   <thead>
