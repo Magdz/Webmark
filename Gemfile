@@ -17,3 +17,4 @@ gem "paperclip", "~> 4.3"
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'bootstrap-sass', '~> 3.2.0.2'
 gem 'sprockets-rails', '~> 2.3.2'
+gem 'heroku', '~> 3.41.3'
