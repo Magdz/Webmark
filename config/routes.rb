@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   resources :notifications
-
+  get 'users/notifications/show/:recevier_id' => 'notifications#show'
   resources :followers
+  get 'followers/:id/following_show' => 'followers#following_show'
+  get 'followers/:id/followers_show' => 'followers#followers_show'
 
   resources :remarks
 
@@ -20,6 +22,7 @@ Rails.application.routes.draw do
   get 'bookmarks/update_subcategories/:category_id' =>'bookmarks#update_subcategories'
   get 'update_subcategories/:category_id' =>'bookmarks#update_subcategories'
   get 'update_bookmarks/:subcategory_id' =>'bookmarks#update_bookmarks'
+  get 'update_bookmarkkkks/:user_id' =>'bookmarks#update_bookmarkkkks'
   get 'All/' => 'bookmarks#All'
   resources :bookmarks do 
     member do

@@ -1,6 +1,5 @@
 <p id="notice"><%= notice %></p>
 
-<%= image_tag @bookmark.image.url(:medium) %>
 
 <p>
   <small>Submitted
@@ -8,12 +7,6 @@
    by <strong><%= @bookmark.user.username %> </strong>
 </small></p>
 <table class = "table table-striped table-bordered table-condensed ">
-  <tr>
-    <td>
-      <strong>Title:</strong>
-      <%= @bookmark.title %>
-    </td>
-  </tr>
   <tr>
     <td>
        <strong>Title:</strong>
@@ -59,6 +52,12 @@
   </tr>
 </table>
 
+<% Follower.all.each do |follower|
+      if follower.followed_id == current_user.id %>
+      <% @notification = Notification.create(user_id: current_user.id , category_id: @bookmark.category_id , subcategory_id: @bookmark.subcategory_id , bookmark_id: @bookmark.id , recevier_id: follower.follower_id )%>
+      <%= @notification.save %>
+<% end %>
+<%end%>
 
 
 <%= link_to 'Edit', edit_bookmark_path(@bookmark) ,  :class => "btn btn-warning" %> |

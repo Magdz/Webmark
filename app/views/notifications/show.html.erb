@@ -1,24 +1,16 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Sender:</strong>
-  <%= @notification.sender_id %>
-</p>
+<div >  <p> <strong> <%=User.find(current_user.id).username%> Notifications </strong>  </p> </div>
+<% User.find(current_user.id).un_seen_notification_num = 0 ;%>
 
-<p>
-  <strong>Category:</strong>
-  <%= @notification.category_id %>
-</p>
+<% Notification.all.order('created_at DESC').each do |notification| 
+	 if notification.recevier_id == current_user.id %>
+<div class="panel panel-success">
+	<div class = "panel-heading"> <h3 class="panel-title"><%=Bookmark.find(notification.bookmark_id).title + "  " %><%= Bookmark.find(notification.bookmark_id).created_at %></h3></div>
+	<div class = "panel-body">
+	<%= link_to User.find(notification.user_id).username + "has submit a bookmark in <" + Category.find(notification.category_id).title + "> Category in <" + Subcategory.find(notification.subcategory_id).title + " > subcategory" , bookmark_path(notification.bookmark_id) %>
+	</div>
+</div><hr>
+<% end %>
+<% end %>
 
-<p>
-  <strong>Subcategory:</strong>
-  <%= @notification.subcategory_id %>
-</p>
-
-<p>
-  <strong>Bookmark:</strong>
-  <%= @notification.bookmark_id %>
-</p>
-
-<%= link_to 'Edit', edit_notification_path(@notification) %> |
 <%= link_to 'Back', notifications_path %>

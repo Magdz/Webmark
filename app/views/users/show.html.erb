@@ -31,6 +31,7 @@
     <% end %>
   </div>
 </p>
+<p>Email: <%= User.find(params[:id]).email  %></p>
 <table class = "table table-striped table-bordered table-condensed">
   <thead>
     <tr>
@@ -42,22 +43,16 @@
     </tr>
   </thead>
   <tbody>
-  <% Bookmark.all.each do |bookmark| %>
+  <% Bookmark.all.order('created_at DESC').each do |bookmark| %>
   <% if User.find(params[:id]).id == bookmark.user_id %>
   <tr>
       <td><%= bookmark.title %></td>
         <td><%= bookmark.url %></td>
         <td><%= bookmark.description %></td>
-        <td><%= Category.find(params[:id]).title%></td>
+        <td><%= Category.find(bookmark.category_id).title%></td>
         <td><%= Subcategory.find(bookmark.subcategory_id).title%></td>
         <td><%= link_to 'Show', bookmark , :class =>"btn btn-info" %></td>
-        <% if bookmark.user == current_user %>
-        <td><%= link_to 'Edit', edit_bookmark_path(bookmark) ,:class =>"btn btn-warning" %></td>
-        <%end%>
-        <% if current_user!= nil%>
-        <td><% if  current_user.id == 1 || bookmark.user ==current_user  %><%= link_to 'Destroy', bookmark, method: :delete,:class =>"btn btn-danger", data: { confirm: 'Are you sure?' } %> <%end%> </td> 
-        <%end%>     
-    <div class="btn-group">
+        <div class="btn-group">
       <td><%= link_to like_bookmark_path(bookmark), method: :put, :class => 'btn btn-success' do %>
         Upvote (<%= bookmark.get_upvotes.size %>)
       <% end %></td>
@@ -66,12 +61,20 @@
         Downvote (<%= bookmark.get_downvotes.size %>)
       <% end %></td>
     </div>
+        <% if bookmark.user == current_user %>
+        <td><%= link_to 'Edit', edit_bookmark_path(bookmark) ,:class =>"btn btn-warning" %></td>
+        <%end%>
+        <% if current_user!= nil%>
+        <td><% if  current_user.id == 1 || bookmark.user ==current_user  %><%= link_to 'Destroy', bookmark, method: :delete,:class =>"btn btn-danger", data: { confirm: 'Are you sure?' } %> <%end%> </td>  
+        <%end%>     
       </tr>
       <%end%>
     <% end %>
-
   </tbody>
 </table>
+ <% if current_user.id == User.find(params[:id]).id %>
+ <%= link_to 'Notifications' , notification_path(current_user.id) %><!--span class="badge"> </span-->
+ <% end %>
 
 <%= link_to 'back', :back , :class => "btn btn-primary" %>
 

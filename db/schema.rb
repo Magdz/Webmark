@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150830165802) do
+ActiveRecord::Schema.define(version: 20150831000546) do
 
   create_table "bookmarks", force: true do |t|
     t.string   "title"
@@ -43,20 +43,11 @@ ActiveRecord::Schema.define(version: 20150830165802) do
     t.integer  "followed_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "notification_id"
   end
 
   add_index "followers", ["followed_id"], name: "index_followers_on_followed_id"
   add_index "followers", ["follower_id"], name: "index_followers_on_follower_id"
-
-  create_table "followings", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "followed_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "followings", ["followed_id"], name: "index_followings_on_followed_id"
-  add_index "followings", ["user_id"], name: "index_followings_on_user_id"
 
   create_table "notifications", force: true do |t|
     t.integer  "sender_id"
@@ -65,6 +56,8 @@ ActiveRecord::Schema.define(version: 20150830165802) do
     t.integer  "bookmark_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "recevier_id"
+    t.integer  "user_id"
   end
 
   create_table "remarks", force: true do |t|
@@ -88,19 +81,20 @@ ActiveRecord::Schema.define(version: 20150830165802) do
   add_index "subcategories", ["category_id"], name: "index_subcategories_on_category_id"
 
   create_table "users", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                    default: "", null: false
+    t.string   "encrypted_password",       default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",            default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.string   "username"
+    t.integer  "un_seen_notification_num", default: 0,  null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
