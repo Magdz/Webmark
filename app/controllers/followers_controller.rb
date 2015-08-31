@@ -12,12 +12,16 @@ class FollowersController < ApplicationController
     @follower.follower_id = current_user.id
     @follower.followed_id = params[:id]
     @follower.save
+    @notification = Notification.create(user_id: current_user.id , category_id: "0", subcategory_id: "10000000" , bookmark_id: "null" , recevier_id: @follower.followed_id )
+    @notification.save 
     redirect_to :back
   end
 
   def unfollow
     @follower = Follower.find(params[:follow])
     @follower.destroy
+    @notification = Notification.create(user_id: current_user.id , category_id: "0", subcategory_id: "0" , bookmark_id: "null" , recevier_id: @follower.followed_id )
+    @notification.save 
     redirect_to :back
   end
 
