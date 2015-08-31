@@ -81,6 +81,12 @@ class BookmarksController < ApplicationController
   def create
     @bookmark = current_user.bookmarks.build(bookmark_params)
     @bookmark.save
+    Follower.all.each do |follower|
+      if follower.followed_id == current_user.id 
+        @notification = Notification.create(user_id: current_user.id , category_id: @bookmark.category_id , subcategory_id: @bookmark.subcategory_id , bookmark_id: @bookmark.id , recevier_id: follower.follower_id )
+       @notification.save 
+      end 
+    end
     respond_with(@bookmark)
   end
 

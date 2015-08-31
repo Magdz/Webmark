@@ -49,16 +49,6 @@ ActiveRecord::Schema.define(version: 20150831114110) do
   add_index "followers", ["followed_id"], name: "index_followers_on_followed_id"
   add_index "followers", ["follower_id"], name: "index_followers_on_follower_id"
 
-  create_table "followings", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "followed_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "followings", ["followed_id"], name: "index_followings_on_followed_id"
-  add_index "followings", ["user_id"], name: "index_followings_on_user_id"
-
   create_table "notifications", force: true do |t|
     t.integer  "sender_id"
     t.integer  "category_id"
