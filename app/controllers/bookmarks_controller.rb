@@ -105,12 +105,16 @@ class BookmarksController < ApplicationController
   def upvote
     @bookmark = Bookmark.find(params[:id])
     @bookmark.upvote_by current_user
+    @notification = Notification.create(user_id: current_user.id , category_id: "0", subcategory_id: "0" , bookmark_id: "50000001" , recevier_id: @bookmark.user_id)
+    @notification.save
     redirect_to :back
   end
 
   def downvote
     @bookmark = Bookmark.find(params[:id])
     @bookmark.downvote_by current_user
+    @notification = Notification.create(user_id: current_user.id , category_id: "0", subcategory_id: "0" , bookmark_id: "50000000" , recevier_id: @bookmark.user_id )
+    @notification.save
     redirect_to :back
   end
 

@@ -1,5 +1,6 @@
 
 <div >  <p> <strong> <%=User.find(current_user.id).username%> Notifications </strong>  </p> </div>
+
 <% Notification.all.order('created_at DESC').each do |notification| 
 	 if notification.recevier_id == current_user.id %>
 	 <% if notification.category_id != 0 %>
@@ -16,7 +17,7 @@
 	<%= link_to User.find(notification.user_id).username + " is following you now"  %>
 	</div>
 </div><hr>
-<% else %>
+<% elsif notification.bookmark_id == 0 %>
 <div class="panel panel-success">
 	<div class = "panel-heading"> <h3 class="panel-title"><%=User.find(notification.user_id).username %></h3></div>
 	<div class = "panel-body">
@@ -24,7 +25,22 @@
 	</div>
 </div><hr>
 <%end%>
+ <% if notification.bookmark_id == 50000000 %>
+<div class="panel panel-success">
+	<div class = "panel-heading"> <h3 class="panel-title"><%=User.find(notification.user_id).username %></h3></div>
+	<div class = "panel-body">
+	<%= link_to User.find(notification.user_id).username + " had made downvote for your bookmark "  %>
+	</div>
+</div><hr>
+<% elsif notification.bookmark_id == 50000001 %>
+<div class="panel panel-success">
+	<div class = "panel-heading"> <h3 class="panel-title"><%=User.find(notification.user_id).username %></h3></div>
+	<div class = "panel-body">
+	<%= link_to User.find(notification.user_id).username + " had made upvote for your bookmark"%>
+	</div>
+</div><hr>
+<%end%>
 <% end %>
 <% end %>
 
-<%= link_to 'Back', current_user_path %>
+<%= link_to 'Back', notifications_path %>
