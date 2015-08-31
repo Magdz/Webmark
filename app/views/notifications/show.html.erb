@@ -1,7 +1,5 @@
 
 <div >  <p> <strong> <%=User.find(current_user.id).username%> Notifications </strong>  </p> </div>
-<% User.find(current_user.id).un_seen_notification_num = 0 ;%>
-
 <% Notification.all.order('created_at DESC').each do |notification| 
 	 if notification.recevier_id == current_user.id %>
 	 <% if notification.category_id != 0 %>
