@@ -9,11 +9,11 @@
 <body>
  
 
-<header class ="navbar navbar-inverse" role = "navigation">
+<header class ="navbar navbar-default" role = "navigation">
   <div class ="navbar-inner">
     <div class = "container">
       <div id = "logo" class = "navbar-brand">
-      <img src="200.png" alt="Logo"/>
+      <a href="/"><img src="../assets/200.png" alt="Logo" height="38" width="38"></a>
        <%= link_to 'Webmark' , root_path ,:class => "active" %></div>
       <nav class = "collapse navbar-collapse navbar-ex1-collapse">
         <% if user_signed_in? %>
