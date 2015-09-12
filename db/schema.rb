@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150831114110) do
+ActiveRecord::Schema.define(version: 20150901223956) do
 
   create_table "bookmarks", force: true do |t|
     t.string   "title"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 20150831114110) do
     t.datetime "updated_at"
     t.integer  "recevier_id"
     t.integer  "user_id"
+    t.boolean  "seen",           default: false
   end
 
   create_table "remarks", force: true do |t|

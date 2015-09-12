@@ -31,8 +31,13 @@
     <% end %>
   </div></p>
   <% if current_user.id == User.find(params[:id]).id %>
+  <% @counter = 0 %>
+  <% Notification.all.each do |notification| %>
+  <% if current_user.id == notification.recevier_id %>
+  <% if notification.seen != true %> <% @counter = @counter + 1 %> <% end %>
+  <% end %><%end%>
   <p id="split"><div id="notification">
- <%= link_to 'Notifications' , notification_path(current_user.id), :class => 'btn btn-success' %><!--span class="badge"> </span-->
+ <%= link_to 'Notifications' , notification_path(current_user.id), :class => 'btn btn-success' %><span class="badge"> <%= @counter %> </span>
   </div></p>
   <% end %>
   <p><div><%= image_tag @user.avatar.url(:thumb) %></div></p>
@@ -52,7 +57,7 @@
   <% if User.find(params[:id]).id == bookmark.user_id %>
   <tr>
       <td><%= bookmark.title %></td>
-        <td><%= bookmark.url %></td>
+        <td><a href = <%= bookmark.url %> > <%= bookmark.url %> </a></td>
         <td><%= bookmark.description %></td>
         <td><%= Category.find(bookmark.category_id).title%></td>
         <td><%= Subcategory.find(bookmark.subcategory_id).title%></td>

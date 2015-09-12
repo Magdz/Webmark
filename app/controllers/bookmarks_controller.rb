@@ -84,7 +84,7 @@ class BookmarksController < ApplicationController
     Follower.all.each do |follower|
       if follower.followed_id == current_user.id 
         @notification = Notification.create(user_id: current_user.id , category_id: @bookmark.category_id , subcategory_id: @bookmark.subcategory_id , bookmark_id: @bookmark.id , recevier_id: follower.follower_id )
-       @notification.save 
+        @notification.save 
       end 
     end
     respond_with(@bookmark)
@@ -105,12 +105,16 @@ class BookmarksController < ApplicationController
   def upvote
     @bookmark = Bookmark.find(params[:id])
     @bookmark.upvote_by current_user
+    @notification = Notification.create(user_id: current_user.id , category_id: "0", subcategory_id: "0" , bookmark_id: "50000001" , recevier_id: @bookmark.user_id)
+    @notification.save
     redirect_to :back
   end
 
   def downvote
     @bookmark = Bookmark.find(params[:id])
     @bookmark.downvote_by current_user
+    @notification = Notification.create(user_id: current_user.id , category_id: "0", subcategory_id: "0" , bookmark_id: "50000000" , recevier_id: @bookmark.user_id )
+    @notification.save
     redirect_to :back
   end
 
